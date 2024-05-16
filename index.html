@@ -66,25 +66,19 @@
   <body>
     <main>
       <div class="container">
-        <div id="toggled" class="">👋🏿 👋🏼 👋🏼 👋🏿</div>
+        <div id="toggled" class="">Hello 👋🏿 👋🏼</div>
       </div>
-
-      <label
-        >Blocking operations
-        <input name="stepper" type="number" step="1" value="0" /> (×100k)</label
-      >
-
       <button type="button" id="toggle">Toggle visiblity</button>
     </main>
 
     <script>
       const toggle = document.querySelector("#toggle");
       const toggled = document.querySelector("#toggled");
-      const input = document.querySelector("input");
-      let counter = 0;
+      const urlParams = new URLSearchParams(window.location.search);
+      const slowFactor = urlParams.get('slow') || 0;
 
       toggle.addEventListener("click", () => {
-        let loopLength = input.value * 100000;
+        let loopLength = slowFactor * 1000000;
 
         for (let i = 0; i < loopLength; i++) {
           toggled.classList = toggled.classList;
