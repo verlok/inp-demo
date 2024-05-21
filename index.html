@@ -15,10 +15,6 @@
         padding: 1rem;
       }
 
-      /*main {
-        display: grid;
-      }*/
-
       button {
         margin: 1rem 0;
       }
@@ -66,24 +62,24 @@
   <body>
     <main>
       <div class="container">
-        <div id="toggled" class="">Hello 👋🏿 👋🏼</div>
+        <div id="toggled" class="">Hello 👋🏿 👋🏻</div>
       </div>
-      <button type="button" id="toggle">Toggle visiblity</button>
+      <button type="button" id="toggle">Toggle visibility</button>
     </main>
 
     <script>
       const toggle = document.querySelector("#toggle");
       const toggled = document.querySelector("#toggled");
       const urlParams = new URLSearchParams(window.location.search);
-      const slowFactor = urlParams.get('slow') || 0;
+      const blockForParam = Number(urlParams.get("blockFor")) || 0;
+
+      const blockFor = (ms) => {
+        const target = performance.now() + ms;
+        while (performance.now() < target);
+      };
 
       toggle.addEventListener("click", () => {
-        let loopLength = slowFactor * 1000000;
-
-        for (let i = 0; i < loopLength; i++) {
-          toggled.classList = toggled.classList;
-        }
-
+        blockFor(blockForParam);
         toggled.classList.toggle("hidden");
       });
     </script>

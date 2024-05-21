@@ -1,10 +1,10 @@
 # Responsiveness demo 
 
-Just a responsiveness quick demo for my presentation "How I made the web more responsive".
+Just a responsiveness quick demo for my presentation "How to make the web more responsive".
 
 ## How to use
 
-Add querystring parameter `slow=1` to perform 1 million operations before the toggle, `slow=2` to perform 2 millions, etc.
+Add querystring parameter `blockFor={{ms}}` to block the main thread for `ms` milliseconds after clicks.
 
 ## Credits
 
