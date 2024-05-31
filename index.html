@@ -3,85 +3,107 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsiveness</title>
+    <title>Accordion Example</title>
     <style>
-      html {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-          sans-serif;
-      }
-
       body {
-        padding: 1rem;
+        font-family: Arial, sans-serif;
       }
 
-      button {
-        margin: 1rem 0;
+      .accordion {
+        width: 80%;
+        max-width: 600px;
+        margin: 20px auto;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
-      #toggled {
-        font-size: 128px;
-        text-align: center;
+      .accordion-item {
+        border-bottom: 1px solid #ddd;
       }
 
-      .container {
-        background-color: #ccc;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 2rem;
-      }
-      @media screen and (max-width: 500px) {
-        .container {
-          aspect-ratio: 1;
-        }
+      .accordion-item:last-child {
+        border-bottom: none;
       }
 
-      .hidden {
-        visibility: hidden;
+      .accordion-title {
+        background-color: #f7f7f7;
+        padding: 15px;
+        cursor: pointer;
+        user-select: none;
       }
 
-      button,
-      input {
-        padding: 0.3rem;
+      .accordion-title h3 {
+        margin: 0;
       }
 
-      input {
-        width: 2rem;
-        text-align: right;
+      .accordion-content {
+        display: none;
+        padding: 15px;
+        background-color: #fff;
       }
-      button {
-        display: block;
-        width: 100%;
+
+      .accordion-content p {
+        margin: 0;
       }
     </style>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
   </head>
-
   <body>
-    <main>
-      <div class="container">
-        <div id="toggled" class="">Hello 👋🏿 👋🏻</div>
-      </div>
-      <button type="button" id="toggle">Toggle visibility</button>
-    </main>
-
+    <section class="accordion">
+      <article class="accordion-item">
+        <header class="accordion-title" onclick="toggleAccordion(this)">
+          <h3>T-Shirt Details</h3>
+        </header>
+        <div class="accordion-content">
+          <p>
+            This t-shirt is made from 100% organic cotton, available in multiple
+            sizes and colors. It's designed for comfort and style, perfect for
+            everyday wear.
+          </p>
+        </div>
+      </article>
+      <article class="accordion-item">
+        <header class="accordion-title" onclick="toggleAccordion(this)">
+          <h3>Shipment Details</h3>
+        </header>
+        <div class="accordion-content">
+          <p>
+            Standard shipping takes 3-5 business days. Expedited shipping
+            options are available at an additional cost. Free shipping on orders
+            over $50.
+          </p>
+        </div>
+      </article>
+      <article class="accordion-item">
+        <header class="accordion-title" onclick="toggleAccordion(this)">
+          <h3>Return Policy</h3>
+        </header>
+        <div class="accordion-content">
+          <p>
+            You can return the product within 30 days of purchase for a full
+            refund. The item must be in its original condition with tags
+            attached. Return shipping costs may apply.
+          </p>
+        </div>
+      </article>
+    </section>
     <script>
-      const toggle = document.querySelector("#toggle");
-      const toggled = document.querySelector("#toggled");
-      const urlParams = new URLSearchParams(window.location.search);
-      const blockForParam = Number(urlParams.get("blockFor")) || 0;
+      function toggleAccordion(element) {
+        const content = element.nextElementSibling;
+        const allContents = document.querySelectorAll(".accordion-content");
 
-      const blockFor = (ms) => {
-        const target = performance.now() + ms;
-        while (performance.now() < target);
-      };
+        allContents.forEach((item) => {
+          if (item !== content) {
+            item.style.display = "none";
+          }
+        });
 
-      toggle.addEventListener("click", () => {
-        blockFor(blockForParam);
-        toggled.classList.toggle("hidden");
-      });
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      }
     </script>
   </body>
 </html>
