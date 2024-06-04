@@ -10,17 +10,19 @@ body {
 }
 
 .accordion-header {
-  background-color: #f1f1f1;
+  background-color: #f3df49; /* Yellow color */
+  color: black; /* Black text color */
   padding: 10px;
   cursor: pointer;
   border: 1px solid #ddd;
   margin: 5px 0;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .accordion-header:focus {
   outline: none;
-  background-color: #ccc;
+  background-color: #d65bad; /* Pink color on focus */
+  color: white; /* White text color on focus */
 }
 
 .accordion-content {
